@@ -7,8 +7,8 @@ insert :: [Int] -> [Int]
 insert = foldl (\acc x -> sort x acc) []
 
 sort :: Int -> [Int] -> [Int]
-sort x [] = x : []
-sort x (y : ys) = if x <= y then x : y : ys else y : (sort x ys)
+sort x [] = [x]
+sort x ys = if x >= last ys then ys ++ [x] else sort x (init ys) ++ [last ys]
 
 main :: IO ()
 main = print $ insert source
